@@ -3,7 +3,7 @@ class Tools{
    public static function connect(
        $host='localhost:3306',
        $user='root',
-       $password='',
+       $password='11111111',
        $dbname='shop_db'
    ){
        $cs="mysql:host=$host;dbname=$dbname;charset=utf8";

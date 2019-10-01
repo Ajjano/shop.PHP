@@ -43,8 +43,8 @@ include_once 'pages/classes.php';
     </div>
     <div class="footer">Ajjano, company Step &copy; 2019</div>
 </div>
-<script src="js/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/script.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
