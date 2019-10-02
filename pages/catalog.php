@@ -35,7 +35,7 @@ $ps1->execute();
                             <div class="panel-footer clearfix">
                                 <div class="pull-left"><?=$row['price_sale']?></div>
                                 <div class="pull-right">
-                                    <button data-cart="<?="cart_".$row['id']?>" class="btn btn-primary">Add to cart</button>
+                                    <button data-cart="<?="cart_".$row['id']?>" class="btn btn-primary btn_to_cart">Add to cart</button>
                                 </div>
                             </div>
                         </div>

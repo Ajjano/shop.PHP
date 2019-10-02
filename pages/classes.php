@@ -113,6 +113,18 @@ class Item{
         $this->id  = $id;
     }
 
+    public function __get($name){
+        if($name=='Price'){
+            return $this->price_sale;
+        }elseif($name=='Image'){
+            return $this->image_path;
+        }
+        elseif($name=='Name'){
+            return $this->item_name;
+        }elseif ($name=='Id'){
+            return $this->id;
+        }
+    }
     public function intoDb()
     {
         try {

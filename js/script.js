@@ -21,7 +21,7 @@ $('document').ready(()=>{
                             <div class="panel-footer clearfix">
                                 <div class="pull-left">${item.price_sale}</div>
                                 <div class="pull-right">
-                                    <button data-cart="${item.id}" class="btn btn-primary">Add to cart</button>
+                                    <button data-cart="${item.id}"  class="btn btn-primary btn_to_cart">Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -35,4 +35,41 @@ $('document').ready(()=>{
           }
       });
    });
+
+   $('.btn_to_cart').on('click', (event)=>{
+       event.preventDefault();
+      console.log($(event.target).data('cart'));
+      let date=new Date(new Date().getTime()+60*1000*30);
+      document.cookie=$(event.target).data('cart')+'=ok; path=/;expires='+date.toUTCString();
+   });
+   function removeCookies() {
+       let cookies_array=document.cookie.split(';');
+       cookies_array.forEach((cookie_item)=>{
+           if(cookie_item.indexOf('cart')===1){
+               let cook=cookie_item.split('=');
+               let date=new Date(new Date().getTime()-6000000);
+               document.cookie='cart_'+cook[0]+'=ok; path=/;expires='+date.toUTCString();
+               console.log(cookie_item);
+               document.location.reload();
+           }
+       })
+   }
+   function removeCookie(name) {
+
+       let date=new Date(new Date().getTime()-6000000);
+       document.cookie='cart_'+name+'=ok; path=/;expires='+date.toUTCString();
+       document.location.reload();
+   }
+
+   $('.glyphicon').on('click', (event)=>{
+       removeCookie($(event.target).data('target'));
+   })
+
+    $('.btn_buy').on('click',()=>{
+        console.log(document.cookie.split(';'));
+        let cookies_array=document.cookie.split(';');
+        cookies_array.each(()=>{
+
+        })
+    })
 });
