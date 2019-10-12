@@ -39,6 +39,7 @@ $('document').ready(()=>{
    $('.btn_to_cart').on('click', (event)=>{
        event.preventDefault();
       console.log($(event.target).data('cart'));
+      alert('Item was added to the cart');
       let date=new Date(new Date().getTime()+60*1000*30);
       document.cookie=$(event.target).data('cart')+'=ok; path=/;expires='+date.toUTCString();
    });
@@ -65,11 +66,42 @@ $('document').ready(()=>{
        removeCookie($(event.target).data('target'));
    })
 
-    $('.btn_buy').on('click',()=>{
+    $('.btn_buy').on('click',(event)=>{
         console.log(document.cookie.split(';'));
+        let id = $(event.target).data('user_id');
+        let data_array = [];
         let cookies_array=document.cookie.split(';');
-        cookies_array.each(()=>{
+        cookies_array.forEach((_cookies)=>{
+            if(_cookies.indexOf('cart') === 1) {
+                let cook = _cookies.split('=');
+                let id = cook[0].split('_');
+                data_array.push(id[1]);
+                removeCookie($(event.target).data('target'));
+            }
+        });
 
-        })
     })
+
+    $(document).on('click', '.center-block', ()=>{
+        let item_id = $(event.target).data('item_id');
+        $('.modal').removeClass('hide');
+        $('.modal').addClass('show');
+        $.ajax({
+            type:'POST',
+            url: 'pages/ajax_modal.php',
+            data: {'item_id': item_id },
+            success: function(data){
+                console.log(data);
+                if(data){
+                    $('.item_info').html(data);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '#btn_close', (event)=>{
+        event.preventDefault();
+        $('.modal').removeClass('show');
+        $('.modal').addClass('hide');
+    });
 });

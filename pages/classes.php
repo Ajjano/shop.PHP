@@ -3,7 +3,7 @@ class Tools{
    public static function connect(
        $host='localhost:3306',
        $user='root',
-       $password='11111111',
+       $password='',
        $dbname='shop_db'
    ){
        $cs="mysql:host=$host;dbname=$dbname;charset=utf8";
@@ -41,6 +41,32 @@ class Tools{
            return false;
        }
        return true;
+
+   }
+
+   public  static function login($login, $password){
+       if($login=='' || $password==''){
+           echo "<script>alert('Login or password is empty')</script>";
+           return false;
+       }
+
+       $login=trim(htmlspecialchars($login));
+       $password=trim(htmlspecialchars($password));
+       $pdo=Tools::connect();
+       $ps=$pdo->prepare('select * from customers');
+       $ps->execute();
+       $isExist=false;
+       $role='';
+       while($row=$ps->fetch()){
+           if($row['login']==$login&&$row['password']==$password){
+               $isExist=true;
+               break;
+           }
+       }
+       if($isExist){
+           return $row;
+       } else
+           return false;
 
    }
 }
@@ -123,6 +149,8 @@ class Item{
             return $this->item_name;
         }elseif ($name=='Id'){
             return $this->id;
+        }else if($name=='Info'){
+            return $this->info;
         }
     }
     public function intoDb()

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'pages/classes.php';
 ?>
 <!DOCTYPE html>
@@ -9,6 +10,7 @@ include_once 'pages/classes.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <header>
@@ -42,6 +44,10 @@ include_once 'pages/classes.php';
         </section>
     </div>
     <div class="footer">Ajjano, company Step &copy; 2019</div>
+</div>
+<div class="modal hide">
+    <div class="item_info">
+    </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

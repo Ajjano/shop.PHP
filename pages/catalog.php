@@ -1,4 +1,3 @@
-
 <?php
 $pdo=Tools::connect();
 $ps=$pdo->prepare("select * from items");
@@ -27,9 +26,10 @@ $ps1->execute();
                 <?php if($row=$ps->fetch()):?>
                     <div class="col-md-3">
                         <div class="panel panel-success">
+<!--                            <div class="panel-heading"><span data-item_id="--><?//=$row['id']?><!--" style="cursor:pointer" class="item_head">--><?//=$row['item_name']?><!--</span></div>-->
                             <div class="panel-heading"><?=$row['item_name']?></div>
-                            <div class="panel-body" style="height: 200px">
-                                <img src="<?=$row['image_path']?>" alt="pict" class="center-block" style="max-width:100%;margin: 0 auto;max-height: 100%;">
+                            <div class="panel-body"  style="height: 200px">
+                                <img src="<?=$row['image_path']?>" data-item_id="<?=$row['id']?>"  alt="pict" class="center-block " style="max-width:100%;margin: 0 auto;max-height: 100%; cursor: pointer">
 
                             </div>
                             <div class="panel-footer clearfix">
